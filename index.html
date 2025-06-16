@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Radio Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Magical Background -->
+    <div class="magical-background">
+        <div class="stars"></div>
+        <div class="fireflies">
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+            <div class="firefly"></div>
+        </div>
+        <div class="aurora"></div>
+    </div>
+
+    <div class="radio-container">
+        <div class="radio">
+            <!-- Radio Body -->
+            <div class="radio-body">
+                <!-- Speaker Grille -->
+                <div class="speaker-grille">
+                    <div class="grille-line"></div>
+                    <div class="grille-line"></div>
+                    <div class="grille-line"></div>
+                    <div class="grille-line"></div>
+                    <div class="grille-line"></div>
+                </div>
+                
+                <!-- Display -->
+                <div class="display" id="display">
+                    <div class="message-display" id="messageDisplay">FM 101.5</div>
+                </div>
+                
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <!-- Power Button -->
+                    <div class="power-section">
+                        <button id="power-btn" class="power-button">
+                            <span class="power-icon">⏻</span>
+                        </button>
+                        <label>POWER</label>
+                    </div>
+                    
+                    <!-- Playback Controls -->
+                    <div class="playback-controls">
+                        <button id="prev-btn" class="control-button">
+                            <span>◄◄</span>
+                        </button>
+                        <button id="play-pause-btn" class="control-button play-pause">
+                            <span id="play-pause-icon">▶</span>
+                        </button>
+                        <button id="next-btn" class="control-button">
+                            <span>►►</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Brand Label -->
+                <div class="brand-label">VINTAGE RADIO</div>
+            </div>
+            
+            <!-- Radio Feet -->
+            <div class="radio-feet">
+                <div class="foot"></div>
+                <div class="foot"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hidden Audio Element -->
+    <audio id="audio-player"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>

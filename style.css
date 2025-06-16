@@ -1,0 +1,478 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0a0a0a;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Magical Background */
+.magical-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: all 1s ease;
+}
+
+body.radio-on .magical-background {
+    background: radial-gradient(ellipse at center, #1a0033 0%, #0a0011 50%, #000000 100%);
+}
+
+/* Stars */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, #eee, transparent),
+        radial-gradient(1px 1px at 50px 160px, #eee, transparent),
+        radial-gradient(1px 1px at 130px 40px, #eee, transparent),
+        radial-gradient(2px 2px at 130px 130px, #eee, transparent),
+        radial-gradient(1px 1px at 200px 10px, #eee, transparent);
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+body.radio-on .stars {
+    opacity: 0.8;
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.3; }
+}
+
+/* Fireflies */
+.fireflies {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+body.radio-on .fireflies {
+    opacity: 1;
+}
+
+.firefly {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffeb3b;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffeb3b;
+    opacity: 0;
+}
+
+body.radio-on .firefly {
+    opacity: 1;
+    animation: fly 15s infinite ease-in-out;
+}
+
+.firefly:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; animation-duration: 12s; }
+.firefly:nth-child(2) { top: 20%; left: 80%; animation-delay: 1s; animation-duration: 14s; }
+.firefly:nth-child(3) { top: 60%; left: 20%; animation-delay: 2s; animation-duration: 16s; }
+.firefly:nth-child(4) { top: 80%; left: 60%; animation-delay: 3s; animation-duration: 13s; }
+.firefly:nth-child(5) { top: 30%; left: 50%; animation-delay: 4s; animation-duration: 15s; }
+.firefly:nth-child(6) { top: 50%; left: 90%; animation-delay: 5s; animation-duration: 17s; }
+.firefly:nth-child(7) { top: 70%; left: 30%; animation-delay: 6s; animation-duration: 14s; }
+.firefly:nth-child(8) { top: 15%; left: 40%; animation-delay: 7s; animation-duration: 16s; }
+.firefly:nth-child(9) { top: 90%; left: 10%; animation-delay: 8s; animation-duration: 15s; }
+.firefly:nth-child(10) { top: 40%; left: 70%; animation-delay: 9s; animation-duration: 13s; }
+
+@keyframes fly {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100px, -100px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Aurora effect */
+.aurora {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+body.radio-on .aurora {
+    opacity: 0.3;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(139, 69, 255, 0.1) 50%,
+        transparent 70%
+    );
+    animation: aurora 8s ease-in-out infinite;
+}
+
+@keyframes aurora {
+    0% { transform: translateX(-100%) translateY(-100%); }
+    100% { transform: translateX(100%) translateY(100%); }
+}
+
+.radio-container {
+    perspective: 1000px;
+    position: relative;
+    z-index: 10;
+}
+
+.radio {
+    position: relative;
+    transform: rotateX(5deg);
+}
+
+.radio-body {
+    width: 500px;
+    height: 350px;
+    background: linear-gradient(135deg, #8b6f47 0%, #6b5637 50%, #5b4627 100%);
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.5),
+        inset 0 2px 5px rgba(255,255,255,0.2),
+        inset 0 -2px 5px rgba(0,0,0,0.3);
+    position: relative;
+    padding: 30px;
+    transition: box-shadow 0.5s ease;
+}
+
+body.radio-on .radio-body {
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.5),
+        inset 0 2px 5px rgba(255,255,255,0.2),
+        inset 0 -2px 5px rgba(0,0,0,0.3),
+        0 0 100px rgba(255, 200, 100, 0.3);
+}
+
+/* Speaker Grille */
+.speaker-grille {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 150px;
+    height: 150px;
+    background: #3a2f1f;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 
+        inset 0 5px 10px rgba(0,0,0,0.5),
+        0 2px 5px rgba(0,0,0,0.3);
+}
+
+.grille-line {
+    width: 120px;
+    height: 3px;
+    background: #2a1f0f;
+    border-radius: 2px;
+}
+
+/* Display */
+.display {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 250px;
+    height: 80px;
+    background: linear-gradient(135deg, #1a2a1a 0%, #0a1a0a 100%);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 
+        inset 0 3px 8px rgba(0,0,0,0.5),
+        0 1px 3px rgba(255,255,255,0.1);
+    color: #1a3a1a;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+}
+
+.display.on {
+    background: linear-gradient(135deg, #3a4a3a 0%, #2a3a2a 100%);
+    color: #9acd32;
+}
+
+.display.on .station-info,
+.display.on .frequency {
+    text-shadow: 0 0 10px #9acd32;
+}
+
+.station-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.frequency {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Control Panel */
+.control-panel {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+/* Power Button */
+.power-section {
+    text-align: center;
+}
+
+.power-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4a3a2a 0%, #3a2a1a 100%);
+    border: 3px solid #2a1a0a;
+    cursor: pointer;
+    box-shadow: 
+        0 5px 10px rgba(0,0,0,0.5),
+        inset 0 -2px 5px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.power-button:active {
+    transform: translateY(2px);
+    box-shadow: 
+        0 3px 5px rgba(0,0,0,0.5),
+        inset 0 -1px 3px rgba(0,0,0,0.3);
+}
+
+.power-button.on {
+    background: linear-gradient(135deg, #5a4a3a 0%, #4a3a2a 100%);
+    box-shadow: 
+        0 5px 10px rgba(0,0,0,0.5),
+        inset 0 -2px 5px rgba(0,0,0,0.3),
+        inset 0 0 20px rgba(255,100,0,0.3);
+}
+
+.power-icon {
+    font-size: 24px;
+    color: #8b6f47;
+}
+
+.power-button.on .power-icon {
+    color: #ff6400;
+    text-shadow: 0 0 10px #ff6400;
+}
+
+/* Playback Controls */
+.playback-controls {
+    display: flex;
+    gap: 15px;
+}
+
+.control-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5a4a3a 0%, #4a3a2a 100%);
+    border: 2px solid #3a2a1a;
+    cursor: pointer;
+    box-shadow: 
+        0 3px 8px rgba(0,0,0,0.5),
+        inset 0 -2px 5px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+    color: #8b6f47;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.control-button:hover {
+    background: linear-gradient(135deg, #6a5a4a 0%, #5a4a3a 100%);
+}
+
+.control-button:active {
+    transform: translateY(2px);
+    box-shadow: 
+        0 1px 3px rgba(0,0,0,0.5),
+        inset 0 -1px 3px rgba(0,0,0,0.3);
+}
+
+.play-pause {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #4a3a2a;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.2);
+}
+
+/* Brand Label */
+.brand-label {
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    font-size: 14px;
+    color: #3a2a1a;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Radio Feet */
+.radio-feet {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: -10px;
+}
+
+.foot {
+    width: 40px;
+    height: 20px;
+    background: #3a2a1a;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .radio-body {
+        width: 350px;
+        height: 250px;
+        padding: 20px;
+    }
+    
+    .speaker-grille {
+        width: 100px;
+        height: 100px;
+        top: 20px;
+        left: 20px;
+    }
+    
+    .grille-line {
+        width: 80px;
+    }
+    
+    .display {
+        width: 180px;
+        height: 60px;
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+    }
+    
+    .station-info {
+        font-size: 12px;
+    }
+    
+    .frequency {
+        font-size: 16px;
+    }
+    
+    .control-panel {
+        bottom: 20px;
+        gap: 30px;
+    }
+    
+    .power-button {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .control-button {
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
+    }
+    
+    .play-pause {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+    
+    .radio-feet {
+        width: 280px;
+    }
+}
+
+/* Update Display section */
+.display {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 250px;
+    height: 80px;
+    background: linear-gradient(135deg, #1a2a1a 0%, #0a1a0a 100%);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 
+        inset 0 3px 8px rgba(0,0,0,0.5),
+        0 1px 3px rgba(255,255,255,0.1);
+    color: #1a3a1a;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.display.on {
+    background: linear-gradient(135deg, #3a4a3a 0%, #2a3a2a 100%);
+    color: #9acd32;
+}
+
+.message-display {
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.4;
+    width: 100%;
+    animation: fadeIn 0.5s ease;
+}
+
+.display.on .message-display {
+    text-shadow: 0 0 10px #9acd32;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Remove old station-info and frequency styles as they're not needed */
